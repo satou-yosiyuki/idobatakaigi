@@ -45,17 +45,19 @@ const useStyles = makeStyles((theme) => ({
     margin: theme.spacing(3, 0, 2),
   },
 }));
-
+// stringに変更があった時変更するという意味
 export default function SignIn({ setName }) {
   const classes = useStyles();
   const [disabled, setDisabled] = useState(true);
   const [string, setString] = useState("");
   console.log({ disabled,string });
   useEffect(() => {
+    // stringが空文字だったらtrueが設定されるtrueはボタンを押せない
     const disable=string==''
     setDisabled(disable);
   }, [string]);
   // autocomplete 自動補完 autofocus指定した欄にフォーカスされる
+  // type="button"汎用ボタンを作成する リロードを防ぐ目的
   return (
     <Container component="main" maxWidth="xs">
       <CssBaseline />
@@ -77,12 +79,15 @@ export default function SignIn({ setName }) {
           />
 
           <Button
-            type="submit"
+            type="button"
             fullWidth
             variant="contained"
             color="primary"
             className={classes.submit}
             disabled={disabled}
+            onClick={()=>{
+              setName(string);
+            }}
           >
             はじめる
           </Button>

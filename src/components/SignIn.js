@@ -50,9 +50,9 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function SignIn() {
+export default function SignIn({ setName }) {
   const classes = useStyles();
-// autocomplete 自動補完 autofocus指定した欄にフォーカスされる
+  // autocomplete 自動補完 autofocus指定した欄にフォーカスされる
   return (
     <Container component="main" maxWidth="xs">
       <CssBaseline />
@@ -69,7 +69,6 @@ export default function SignIn() {
             id="name"
             label="ニックネーム"
             name="name"
-
             autoFocus
           />
 

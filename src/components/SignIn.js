@@ -1,13 +1,9 @@
-import React from "react";
-import Avatar from "@material-ui/core/Avatar";
+import React, { useEffect, useState } from "react";
 import Button from "@material-ui/core/Button";
 import CssBaseline from "@material-ui/core/CssBaseline";
 import TextField from "@material-ui/core/TextField";
-
 import Link from "@material-ui/core/Link";
-
 import Box from "@material-ui/core/Box";
-import LockOutlinedIcon from "@material-ui/icons/LockOutlined";
 import Typography from "@material-ui/core/Typography";
 import { makeStyles } from "@material-ui/core/styles";
 import Container from "@material-ui/core/Container";
@@ -52,6 +48,13 @@ const useStyles = makeStyles((theme) => ({
 
 export default function SignIn({ setName }) {
   const classes = useStyles();
+  const [disabled, setDisabled] = useState(true);
+  const [string, setString] = useState("");
+  console.log({ disabled,string });
+  useEffect(() => {
+    const disable=string==''
+    setDisabled(disable);
+  }, [string]);
   // autocomplete 自動補完 autofocus指定した欄にフォーカスされる
   return (
     <Container component="main" maxWidth="xs">
@@ -70,6 +73,7 @@ export default function SignIn({ setName }) {
             label="ニックネーム"
             name="name"
             autoFocus
+            onChange={(e) => setString(e.target.value)}
           />
 
           <Button
@@ -78,6 +82,7 @@ export default function SignIn({ setName }) {
             variant="contained"
             color="primary"
             className={classes.submit}
+            disabled={disabled}
           >
             はじめる
           </Button>

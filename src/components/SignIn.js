@@ -50,10 +50,10 @@ export default function SignIn({ setName }) {
   const classes = useStyles();
   const [disabled, setDisabled] = useState(true);
   const [string, setString] = useState("");
-  console.log({ disabled,string });
+  console.log({ disabled, string });
   useEffect(() => {
     // stringが空文字だったらtrueが設定されるtrueはボタンを押せない
-    const disable=string==''
+    const disable = string == "";
     setDisabled(disable);
   }, [string]);
   // autocomplete 自動補完 autofocus指定した欄にフォーカスされる
@@ -76,6 +76,13 @@ export default function SignIn({ setName }) {
             name="name"
             autoFocus
             onChange={(e) => setString(e.target.value)}
+            onKeyDown={(e) => {
+              console.log({ key: e.key });
+              if (e.key === "Enter") {
+                setName(e.target.value);
+                e.preventDefault();
+              }
+            }}
           />
 
           <Button
@@ -85,7 +92,7 @@ export default function SignIn({ setName }) {
             color="primary"
             className={classes.submit}
             disabled={disabled}
-            onClick={()=>{
+            onClick={() => {
               setName(string);
             }}
           >

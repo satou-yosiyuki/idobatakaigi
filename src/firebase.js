@@ -22,7 +22,7 @@ const firebaseConfig = {
 // リファレンス意味言語に関する事実の情報倉庫 よく意味わからない
 firebase.initializeApp(firebaseConfig);
 const database = firebase.database();
-const messagesRef = database.ref("messages");
+export const messagesRef = database.ref("messages");
 
 export const pushMessages = ({ name, text }) => {
   messagesRef.push({ name, text });
